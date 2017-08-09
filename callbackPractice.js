@@ -2,7 +2,11 @@
 Below is a sample problem 
 
   //code here for sayHi
-
+  
+  function sayHi(message, cb){
+    cb(alert(message));
+  }
+  
    sayHi('Hi Katie', function(thingToSay){
       alert(thingToSay);
    });
@@ -23,11 +27,14 @@ and what you should write is the sayHi function that makes the code above work,
 // 1. Write a function called first that returns the first item of the array using a callback function
 
   // Code Here
-
+function first(first, cb){
+    cb(first[0]);
+}
   
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
+
 first(names, function(firstName){
-  console.log('The first name in names is ' + firstName)
+  console.log('The first name in names is ' + firstName);
 });
 
 
@@ -35,6 +42,11 @@ first(names, function(firstName){
 // 2. Write a function called last which returns the last item of the array using a callback function.
 
   //Code Here
+
+function last(last, cb){
+    var x = last.length -1;
+    cb(last[x]);
+}
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -46,6 +58,9 @@ last(names, function(lastName){
 
   //Code Here
 
+function multiply(num, num2, cb){
+    return cb(num * num2);
+}
 
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -57,6 +72,16 @@ multiply(4, 3, function(answer){
 // If it does, return true using the callback, if not return false.
 
   //Code Here 
+
+function contains(arr, name, cb){
+  var x = false;
+    for (var i = 0; i < arr.length; i++){
+      if (arr[i] === name){
+       x = true;
+        }
+    }
+    return cb(x);
+}
 
 contains(names, 'Colt', function(result){
   if(result === true){
@@ -73,6 +98,15 @@ contains(names, 'Colt', function(result){
 
     //Code Here
 
+function uniq(arr, callback){
+   arr = arr.filter(function(val, index, newArray){
+    return newArray.indexOf(val) == index;
+  }); 
+return callback(arr);
+}
+
+
+
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
 });
@@ -82,6 +116,17 @@ uniq(names, function(uniqArr){
 // function to return the indices and item.
 
     //Code Here 
+
+function each(arr, ab){
+    for (var i = 0; i< arr.length; i++){
+    var indice = i;
+    var item = arr[i];
+    ab(item, indice);
+    }
+    
+}
+
+
 
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -93,6 +138,16 @@ each(names, function(item, indice){
 // and returns that user.
 
  //Code Here
+
+ function getUserById(arr, input, cb){
+   var x;
+   for (var i = 0; i < arr.length; i++){
+     if(input === arr[i].id){
+       x = arr[i];
+     }
+   }
+   return cb(x);
+ }
 
 var users = [
   {
